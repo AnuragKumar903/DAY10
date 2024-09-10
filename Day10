@@ -1,0 +1,65 @@
+#include <iostream>
+#include <limits> // For std::numeric_limits
+
+int findMax(const int arr[], int size) {
+    if (size <= 0) {
+        std::cerr << "Array size must be greater than 0." << std::endl;
+        return std::numeric_limits<int>::min(); // Return a minimum integer value to indicate an error
+    }
+
+    int max = arr[0]; // Initialize max to the first element
+
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] > max) {
+            max = arr[i]; // Update max if the current element is greater
+        }
+    }
+
+    return max;
+}
+
+int main() {
+    int arr1[] = {1, 5, 3, 9, 2};
+    int size1 = sizeof(arr1) / sizeof(arr1[0]);
+    std::cout << "Maximum value in arr1: " << findMax(arr1, size1) << std::endl;
+
+    int arr2[] = {-1, -5, -3, -9, -2};
+    int size2 = sizeof(arr2) / sizeof(arr2[0]);
+    std::cout << "Maximum value in arr2: " << findMax(arr2, size2) << std::endl;
+
+    return 0;
+}
+
+
+#include <iostream>
+#include <string>
+#include <cctype>  // For std::isalnum and std::tolower
+#include <algorithm> // For std::remove_if
+
+bool isPalindrome(const std::string &str) {
+    // Create a cleaned-up version of the string with only alphanumeric characters in lowercase
+    std::string cleanedStr;
+    for (char ch : str) {
+        if (std::isalnum(ch)) {
+            cleanedStr += std::tolower(ch); // Add the character in lowercase
+        }
+    }
+
+    // Check if the cleaned string is a palindrome
+    std::string reversedStr = cleanedStr;
+    std::reverse(reversedStr.begin(), reversedStr.end());
+
+    return cleanedStr == reversedStr;
+}
+
+int main() {
+    std::string test1 = "A man, a plan, a canal, Panama";
+    std::cout << "Is \"" << test1 << "\" a palindrome? " << (isPalindrome(test1) ? "true" : "false") << std::endl;
+
+    std::string test2 = "Hello, World!";
+    std::cout << "Is \"" << test2 << "\" a palindrome? " << (isPalindrome(test2) ? "true" : "false") << std::endl;
+
+    return 0;
+}
+
+
